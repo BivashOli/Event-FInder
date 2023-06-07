@@ -37,26 +37,15 @@ const Map = () => {
                               console.log(json)
                               for (let i = 0; i < Object.keys(json).length; i++) {
                                     const lng = json[i]["longitude"]
-                                    const lat = json[i]["longitude"]
+                                    const lat = json[i]["latitude"]
+                                    console.log(lng + " " + lat)
+                                    const eventName = json[i]["event_name"]
 
-                                    fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address + ".json?access_token=" + mapboxgl.accessToken)
-                                          .then(coordsRaw => { return coordsRaw.json() })
-                                          .then(coords => {
-                                                console.log(coords)
-                                                if (coords.hasOwnProperty("features")) {
-                                                      [lng, lat] = coords["features"][0]["center"]
-                                                      console.log(lng + " " + lat)
-                                                      const eventName = json[i]["event_name"]
-                                                      const popup = new mapboxgl.Popup({ offset: 25 }).setText(eventName);
-                                                      const marker = new mapboxgl.Marker()
-                                                            .setLngLat([lng, lat])
-                                                            .setPopup(popup)
-                                                            .addTo(map.current);
-
-                                                }
-
-
-                                          })
+                                    const popup = new mapboxgl.Popup({ offset: 25 }).setText(eventName);
+                                    const marker = new mapboxgl.Marker()
+                                          .setLngLat([lng, lat])
+                                          .setPopup(popup)
+                                          .addTo(map.current)
                               }
                         }
                   )

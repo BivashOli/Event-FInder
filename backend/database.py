@@ -6,11 +6,12 @@ class User:
           self.username = username
 
 class Event:
-     def __init__(self, event_id : str, event_name : str, event_address : str, event_info : str, user_id : int) -> None:
+     def __init__(self, event_id : str, event_name : str, event_info : str, longitude : str, latitude : str, user_id : int) -> None:
           self.event_id = event_id
           self.event_name = event_name
-          self.event_address = event_address
           self.event_info = event_info 
+          self.longitude = longitude
+          self.latitude = latitude
           self.user_id = user_id
 
 class Database:
@@ -52,7 +53,7 @@ class Database:
                     return User(row[0], row[1])
           return None 
 
-     def create_event(self, event_name : str, event_info : str, longitude, latitude, user_id : int,):
+     def create_event(self, event_name : str, event_info : str, longitude, latitude, user_id : int):
           
           self.cursor.execute(f"INSERT INTO event_list(event_name, event_info, longitude, latitude, user_id) VALUES('{event_name}', '{event_info}', {str(longitude)}, {str(latitude)}, {user_id})")
           self.db.commit()
@@ -81,5 +82,5 @@ class Database:
           result = self.cursor.fetchall()
      
           for row in result:
-               events.append(Event(row[0], row[1], row[2], row[3], row[4]))
+               events.append(Event(row[0], row[1], row[2], row[3], row[4], row[5]))
           return events 
