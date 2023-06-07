@@ -20,9 +20,14 @@ const Map = () => {
                   center: [longitude, latitude],
                   zoom: zoom
             })
-            let data = {}
-            let lng = 0;
-            let lat = 0;
+            // const popup = new mapboxgl.Popup({ offset: 25 }).setText('YOOOO');
+            // const marker = new mapboxgl.Marker()
+            //       .setLngLat([longitude, latitude])
+            //       .setPopup(popup)
+            //       .addTo(map.current);
+            // let data = {}
+            // let lng = 0;
+            // let lat = 0;
             fetch('http://127.0.0.1:5000/events-all').then(res => {
                   return res.json()
             }
@@ -30,23 +35,29 @@ const Map = () => {
                   .then(
                         json => {
                               console.log(json)
-                              // for (let i = 0; i < Object.keys(json).length; i++) {
-                              //       const address = json[i]["event_address"]
-                              //       fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address + ".json?access_token=" + mapboxgl.accessToken)
-                              //             .then(coordsRaw => { return coordsRaw.json() })
-                              //             .then(coords => {
-                              //                   console.log(coords)
-                              //                   // if (coords.hasOwnProperty("features")) {
-                              //                   //       [lng, lat] = coords["features"][0]["center"]
-                              //                   //       console.log(lng + " " + lat)
-                              //                   //       const marker = new mapboxgl.Marker()
-                              //                   //             .setLngLat([lng, lat])
-                              //                   //             .addTo(map.current);
-                              //                   // }
+                              for (let i = 0; i < Object.keys(json).length; i++) {
+                                    const lng = json[i]["longitude"]
+                                    const lat = json[i]["longitude"]
+
+                                    fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address + ".json?access_token=" + mapboxgl.accessToken)
+                                          .then(coordsRaw => { return coordsRaw.json() })
+                                          .then(coords => {
+                                                console.log(coords)
+                                                if (coords.hasOwnProperty("features")) {
+                                                      [lng, lat] = coords["features"][0]["center"]
+                                                      console.log(lng + " " + lat)
+                                                      const eventName = json[i]["event_name"]
+                                                      const popup = new mapboxgl.Popup({ offset: 25 }).setText(eventName);
+                                                      const marker = new mapboxgl.Marker()
+                                                            .setLngLat([lng, lat])
+                                                            .setPopup(popup)
+                                                            .addTo(map.current);
+
+                                                }
 
 
-                              //             })
-                              // }
+                                          })
+                              }
                         }
                   )
 

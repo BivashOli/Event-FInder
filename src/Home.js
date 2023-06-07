@@ -7,6 +7,9 @@ const Home = () => {
                <Link to ="/createuser">Create User</Link>
                <br/>
                <Link to = "/map">Map</Link>
+               <br />
+               <Link to = "/eventform">Create an Event!</Link>
+
           </div>
      );
 }

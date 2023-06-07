@@ -52,8 +52,9 @@ class Database:
                     return User(row[0], row[1])
           return None 
 
-     def create_event(self, event_name : str, event_address : str, event_info : str, user_id : int):
-          self.cursor.execute(f"INSERT INTO event_list(event_name, event_address, event_info, user_id) VALUES('{event_name}', '{event_address}','{event_info}', {user_id})")
+     def create_event(self, event_name : str, event_info : str, longitude, latitude, user_id : int,):
+          
+          self.cursor.execute(f"INSERT INTO event_list(event_name, event_info, longitude, latitude, user_id) VALUES('{event_name}', '{event_info}', {str(longitude)}, {str(latitude)}, {user_id})")
           self.db.commit()
           # self.cursor.execute("SELECT * FROM event_list WHERE event_id = LAST_INSERT_ID()")
 

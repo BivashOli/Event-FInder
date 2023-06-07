@@ -40,12 +40,15 @@ def login():
 @app.route("/event", methods=['POST'])
 def create_event():
      data = request.get_json()
-     event_name = data['event_name']
-     event_address = data['event_address']
-     event_info = data['event_info']
-     user_id = db.get_user(data['username']).user_id
+     print(data)
+     email = data['email']
+     event_name = data['name']
+     longitude = data['lng']
+     latitude = data['lat']
+     event_info = data['description']
+     # user_id = db.get_user(data['username']).user_id
      
-     db.create_event(event_name, event_address, event_info, user_id)
+     db.create_event(event_name, event_info, longitude, latitude, 1)
      return "Success"
 
 @app.route("/events-by-user", methods=['POST'])

@@ -3,6 +3,8 @@ import CreateUser from "./CreateUser";
 import Home from "./Home";
 import Map from "./Map"
 import Navbar from "./Navbar";
+import EventForm from "./EventForm";
+
 // import Login from "./Login";
 // import { useEffect } from "react";
 // import { gapi } from 'gapi-script'
@@ -26,6 +28,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/createuser" element={<CreateUser />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/eventform" element={<EventForm />} />
+
         {/* <Route path="/login" element={<Login />}/> */}
       </Routes>
     </div>
