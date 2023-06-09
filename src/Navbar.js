@@ -2,7 +2,7 @@ import { Link, Route, Routes } from "react-router-dom"
 
 const Navbar = () => {
      return ( 
-          <Link to="/createUser">Create</Link>
+          <Link to="/eventform">Create Event</Link>
      );
 }
  

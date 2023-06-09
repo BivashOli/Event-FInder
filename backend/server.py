@@ -41,15 +41,22 @@ def login():
 def create_event():
      data = request.get_json()
      print(data)
-     email = data['email']
-     event_name = data['name']
-     longitude = data['lng']
-     latitude = data['lat']
-     event_info = data['description']
+     # email = data['email']
+     # event_name = data['name']
+     # longitude = data['lng']
+     # latitude = data['lat']
+     # event_info = data['description']
+     # blob = data['pics']
      # user_id = db.get_user(data['username']).user_id
      
-     db.create_event(event_name, event_info, longitude, latitude, 1)
+     # db.create_event(event_name, event_info, longitude, latitude, 1)
      return "Success"
+
+@app.route("/images", methods=['POST'])
+def images():
+     data = request.get_json()
+     print(data)
+
 
 @app.route("/events-by-user", methods=['POST'])
 def get_events_by_user():

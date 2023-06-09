@@ -41,7 +41,7 @@ const Map = () => {
                                     console.log(lng + " " + lat)
                                     const eventName = json[i]["event_name"]
 
-                                    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML("<img src='img_girl.jpg' alt='Girl in a jacket' width='500' height='600'>")
+                                    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(eventName + "<img src='d.png' alt='Girl in a jacket' width='125' height='150'>")
                                     const marker = new mapboxgl.Marker()
                                           .setLngLat([lng, lat])
                                           .setPopup(popup)
