@@ -1,18 +1,20 @@
 import mysql.connector
 
 class User:
-     def __init__(self, user_id : int, username : str) -> None:
+     def __init__(self, user_id : int, email : str, username : str) -> None:
           self.user_id = user_id
+          self.email = email 
           self.username = username
 
 class Event:
-     def __init__(self, event_id : str, event_name : str, event_info : str, longitude : str, latitude : str, user_id : int) -> None:
+     def __init__(self, event_id : str, user_id : int, name : str, description : str, picture, longitude : str, latitude : str) -> None:
           self.event_id = event_id
-          self.event_name = event_name
-          self.event_info = event_info 
+          self.user_id = user_id
+          self.name = name
+          self.description = description
+          self.picture = picture
           self.longitude = longitude
           self.latitude = latitude
-          self.user_id = user_id
 
 class Database:
      def __init__(self) -> None:
@@ -21,7 +23,7 @@ class Database:
           self.event_length = 5
           
      # return -1 == username already exist, 0 == success
-     def create_user(self, username : str, password : str) -> int:
+     def create_user(self, email : str, username : str) -> int:
           self.cursor.execute("SELECT * FROM users")
           result = self.cursor.fetchall()
           for row in result:

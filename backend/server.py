@@ -1,12 +1,36 @@
 from flask import Flask, redirect, request, jsonify
 from flask_cors import CORS
 from database import Database
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
 import json 
 
 db = Database() 
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/login", methods=['POST'])
+def home():
+     token = request.get_json()
+     print(token)
+     client_id = "948743406742-ajenkg2jp85kcvaunmul4poiapond0k1.apps.googleusercontent.com"
+     try:
+          idinfo = id_token.verify_oauth2_token(token, requests.Request(), client_id)
+          userid = idinfo["sub"]
+          user_email = idinfo["email"]
+          user_name = idinfo["name"]
+
+          print(userid)
+          print(user_email)
+          print(user_name)
+
+
+          return userid
+     except ValueError:
+          print("VALUE ERROR!!")
+          pass
+     return "error"
 
 @app.route("/user/<username>")
 def get_user(username):
@@ -27,15 +51,15 @@ def create_user():
      else:
           return "Success"
 
-@app.route("/login", methods=['POST'])
-def login():
-     data = request.get_json()
-     username = data['username']
-     password = data['password']
-     if db.login_user(username, password) == 0:
-          return "Success!!!"
-     else:
-          return "Error"
+# @app.route("/login", methods=['POST'])
+# def login():
+#      data = request.get_json()
+#      username = data['username']
+#      password = data['password']
+#      if db.login_user(username, password) == 0:
+#           return "Success!!!"
+#      else:
+#           return "Error"
 
 @app.route("/event", methods=['POST'])
 def create_event():

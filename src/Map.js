@@ -1,4 +1,3 @@
-// import ReactMapGL from "react-map-gl"
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, Route, Routes } from "react-router-dom"
 import mapboxgl from 'mapbox-gl'
@@ -20,14 +19,6 @@ const Map = () => {
                   center: [longitude, latitude],
                   zoom: zoom
             })
-            // const popup = new mapboxgl.Popup({ offset: 25 }).setText('YOOOO');
-            // const marker = new mapboxgl.Marker()
-            //       .setLngLat([longitude, latitude])
-            //       .setPopup(popup)
-            //       .addTo(map.current);
-            // let data = {}
-            // let lng = 0;
-            // let lat = 0;
             fetch('http://127.0.0.1:5000/events-all').then(res => {
                   return res.json()
             }
@@ -41,7 +32,7 @@ const Map = () => {
                                     console.log(lng + " " + lat)
                                     const eventName = json[i]["event_name"]
 
-                                    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(eventName + "<img src='d.png' alt='Girl in a jacket' width='125' height='150'>")
+                                    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(eventName + "<img src='img_girl.jpg' alt='Girl in a jacket' width='125' height='150'>")
                                     const marker = new mapboxgl.Marker()
                                           .setLngLat([lng, lat])
                                           .setPopup(popup)
@@ -49,32 +40,11 @@ const Map = () => {
                               }
                         }
                   )
-
-
-
-
       })
-
-      // navigator.geolocation.getCurrentPosition()
-      // const [viewport, setViewport] = useState({
-      //       latitude : 45,
-      //       longitude : -75,
-      //       zoom : 10
-      // })
 
       return (
             <div className="map">
                   <div ref={mapContainer} className="map-container"></div>
-                  {/* <ReactMapGL 
-                  {...viewport} 
-                  mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                  onView
-                  width="100%"
-                  height="100%"
-                  mapStyle="mapbox://styles/sankarr/clffwqnm700jl01mr0lnc1z2s"
-                  
-                  >
-                  </ReactMapGL> */}
             </div>
       );
 }
