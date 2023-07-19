@@ -18,6 +18,19 @@ const Login = () => {
                method: 'POST',
                headers: { "Content-Type": "application/json" },
                body: JSON.stringify(response.credential)
+          }).then((res) => {
+               res.json().then(
+                    json => {
+
+                         if (json["success_flag"]) {
+                              console.log("sad" + navigator.cookieEnabled)
+                              document.cookie = "JWT=" + response.credential + ", path=/"
+                              console.log(document.cookie)
+                         }
+
+                    }
+               )
+               console.log("Success")
           })
      }
 

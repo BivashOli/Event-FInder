@@ -12,6 +12,7 @@ CORS(app)
 
 @app.route("/login", methods=['POST'])
 def home():
+     success_flag = {"success_flag" : False}
      token = request.get_json()
      print(token)
      client_id = "948743406742-ajenkg2jp85kcvaunmul4poiapond0k1.apps.googleusercontent.com"
@@ -24,13 +25,15 @@ def home():
           print(userid)
           print(user_email)
           print(user_name)
+          if not db.does_user_exist(user_email):
+               db.create_user(user_email, user_name)
 
-
-          return userid
+          success_flag["success_flag"] = True
+          return success_flag
      except ValueError:
           print("VALUE ERROR!!")
           pass
-     return "error"
+     return success_flag
 
 @app.route("/user/<username>")
 def get_user(username):
@@ -61,19 +64,19 @@ def create_user():
 #      else:
 #           return "Error"
 
-@app.route("/event", methods=['POST'])
+@app.route("/create-event", methods=['POST'])
 def create_event():
      data = request.get_json()
      print(data)
-     # email = data['email']
-     # event_name = data['name']
-     # longitude = data['lng']
-     # latitude = data['lat']
-     # event_info = data['description']
-     # blob = data['pics']
+     email = data['email']
+     name = data['name']
+     longitude = data['lng']
+     latitude = data['lat']
+     description = data['description']
+     # picture = data['pics']
      # user_id = db.get_user(data['username']).user_id
      
-     # db.create_event(event_name, event_info, longitude, latitude, 1)
+     db.create_event(9, name, description, "", longitude, latitude)
      return "Success"
 
 @app.route("/images", methods=['POST'])
@@ -104,6 +107,11 @@ def get_events_all():
           events_dictionary[counter] = event.__dict__
           counter += 1
      return events_dictionary
+
+def convertFileToBLOB(filename : str) -> bytes:
+     with open(filename, 'rb') as file:
+          binary_data = file.read()
+     return binary_data
 
 if __name__ == "__main__":
      app.run()
