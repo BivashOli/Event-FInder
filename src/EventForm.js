@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl'
-import { redirect , Routes, Route, useNavigate, Navigate} from 'react-router-dom';
+import { redirect, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie'
+
 
 const EventForm = () => {
      const [email, setEmail] = useState("")
@@ -14,20 +15,20 @@ const EventForm = () => {
      const [description, setDescription] = useState("")
      const [image, setImage] = useState(null)
      const navigate = useNavigate()
+     const JWT = Cookies.get("JWT")
 
      useEffect(() => {
           // const cookieDecoded = decodeURIComponent(document.cookie).split(";")
+          if (("JWT" in Cookies.get())) {
 
-          if (cookieDecoded.length === 0) {
+               // JWT = Cookies.get("JWT")
+               console.log(Cookies.get('JWT'))
+          } else {
                console.log("uh oh")
                navigate("/login")
-               Cookies.h
-          } else {
-               let JWT; 
-               
-               console.log(Cookies.get('JWT'))
           }
-     }, [])
+     }
+          , [])
 
      const handleSubmit = () => {
           console.log("Asd")
@@ -42,7 +43,7 @@ const EventForm = () => {
                     if (coords.hasOwnProperty("features")) {
                          const [lng, lat] = coords["features"][0]["center"]
 
-                         const data = { email, name, lng, lat, description }
+                         const data = { email, name, lng, lat, description, JWT }
                          fetch('http://127.0.0.1:5000/create-event', {
                               method: 'POST',
                               headers: { "Content-Type": "application/json" },

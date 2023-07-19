@@ -3,19 +3,19 @@ from flask_cors import CORS
 from database import Database
 from google.oauth2 import id_token
 from google.auth.transport import requests
-
+import jwt
 import json 
 
 db = Database() 
 app = Flask(__name__)
 CORS(app)
+client_id = "948743406742-ajenkg2jp85kcvaunmul4poiapond0k1.apps.googleusercontent.com"
 
 @app.route("/login", methods=['POST'])
 def home():
      success_flag = {"success_flag" : False}
      token = request.get_json()
      print(token)
-     client_id = "948743406742-ajenkg2jp85kcvaunmul4poiapond0k1.apps.googleusercontent.com"
      try:
           idinfo = id_token.verify_oauth2_token(token, requests.Request(), client_id)
           userid = idinfo["sub"]
@@ -54,29 +54,19 @@ def create_user():
      else:
           return "Success"
 
-# @app.route("/login", methods=['POST'])
-# def login():
-#      data = request.get_json()
-#      username = data['username']
-#      password = data['password']
-#      if db.login_user(username, password) == 0:
-#           return "Success!!!"
-#      else:
-#           return "Error"
-
 @app.route("/create-event", methods=['POST'])
 def create_event():
      data = request.get_json()
-     print(data)
-     email = data['email']
      name = data['name']
      longitude = data['lng']
      latitude = data['lat']
      description = data['description']
-     # picture = data['pics']
-     # user_id = db.get_user(data['username']).user_id
+     JWT = jwt.decode(data['JWT'], options={"verify_signature" : False})
+     user_email = JWT["email"]
+     userid = db.get_user_id(user_email)
      
-     db.create_event(9, name, description, "", longitude, latitude)
+     print("asdas", userid)
+     db.create_event(userid, name, description, "", longitude, latitude)
      return "Success"
 
 @app.route("/images", methods=['POST'])
