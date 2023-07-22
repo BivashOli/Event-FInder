@@ -32,13 +32,13 @@ class Database:
           self.db.commit()
           return 0
      
-     def get_user(self, email : int) -> User:
+     def get_user(self, user_id : int) -> User:
           self.cursor.execute(f"SELECT * FROM Users WHERE user_id = {user_id}")
           user_id, email, username = self.cursor.fetchall()
-          return User(user_id, email, username)
+          return [user_id, email, username]
 
      def get_user_id(self, email : str) -> int:
-          self.cursor.execute(f"SELECT * FROM Users WHERE email = '{email}'")
+          self.cursor.execute(f"SELECT * FROM users WHERE email = '{email}'")
           user_row = self.cursor.fetchall()
           user_id = user_row[0][0]
           return user_id 
@@ -53,7 +53,7 @@ class Database:
           result = self.cursor.fetchall()
      
           for row in result:
-               if row[0] == user_id:
+               if row[1] == user_id:
                     events.append(Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
           return events 
      
@@ -63,7 +63,7 @@ class Database:
           result = self.cursor.fetchall()
      
           for row in result:
-               if row[0] == user_id:
+               if row[1] == user_id:
                     events.append(Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
           return events 
      
@@ -76,7 +76,7 @@ class Database:
 
      def get_events_all(self):
           events = []
-          self.cursor.execute(f"SELECT * FROM events")
+          self.cursor.execute(f"SELECT * FROM events") 
           result = self.cursor.fetchall()
      
           for row in result:

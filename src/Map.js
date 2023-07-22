@@ -30,7 +30,7 @@ const Map = () => {
                                     const lng = json[i]["longitude"]
                                     const lat = json[i]["latitude"]
                                     console.log(lng + " " + lat)
-                                    const eventName = json[i]["event_name"]
+                                    const eventName = json[i]["name"]
 
                                     const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(eventName + "<img src='img_girl.jpg' alt='Girl in a jacket' width='125' height='150'>")
                                     const marker = new mapboxgl.Marker()

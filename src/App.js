@@ -4,6 +4,7 @@ import Map from "./Map"
 import Navbar from "./Navbar";
 import EventForm from "./EventForm";
 import Login from "./Login";
+import UserEvents from "./UserEvents";
 
 function App() {
 
@@ -16,6 +17,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/map" element={<Map />} />
         <Route path="/eventform" element={<EventForm />} />
+        <Route path="/event" element={<UserEvents />} />
+
       </Routes>
     </div>
   );

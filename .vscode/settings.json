@@ -1,6 +1,12 @@
 {
-     "[python]": {
-          "editor.defaultFormatter": "ms-python.python"
+     "[python]": 
+          "editor.defaultFormatter": "ms-python.black-formatter"
      },
-     "python.formatting.provider": "none"
+     "python.formatting.provider": "none",
+     "vim.insertModeKeyBindings" : [
+          {
+               "before" : ["k", "j"],
+               "after" : ["<Esc>"]
+          }
+     ]
 }
