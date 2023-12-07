@@ -16,7 +16,7 @@ const EventForm = () => {
      const [image, setImage] = useState(null)
      const navigate = useNavigate()
      const JWT = Cookies.get("JWT")
-
+     // comment 
      useEffect(() => {
           // const cookieDecoded = decodeURIComponent(document.cookie).split(";")
           if (("JWT" in Cookies.get())) {
