@@ -1,7 +1,14 @@
 {
-     "[python]": 
-          "editor.defaultFormatter": "ms-python.black-formatter"
+     
+     
+          "[javascript]": {
+            "editor.defaultFormatter": "vscode.typescript-language-features"
+          },
+        
+     "[python]":{ 
+          "editor.defaultFormatter": "ms-python.python"
      },
+
      "python.formatting.provider": "none",
      "vim.insertModeKeyBindings" : [
           {

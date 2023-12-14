@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -16,4 +17,17 @@ code {
 .map-container {
   width : 100vw;
   height: 100vh;
+}
+
+.custom-marker {
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
