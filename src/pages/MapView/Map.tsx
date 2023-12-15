@@ -3,6 +3,7 @@ import { Link, Route, Routes } from "react-router-dom"
 import mapboxgl from 'mapbox-gl'
 import EventIcon from './EventIcon';
 import './map.css'
+import Navbar from '../../components/Navbar'
 
 const Map = () => {
       mapboxgl.accessToken = 'pk.eyJ1Ijoic2hvY2ttaW5lcngiLCJhIjoiY2tzdXZvdzNoMTMwNzJvcXoza3hqcjdieiJ9.RSOERNWq8FkRBi9Z4Q4hbg'
@@ -13,7 +14,6 @@ const Map = () => {
       let latitude: number = 42.35
 
       const [zoom, setZoom] = useState(13)
-
 
       const { coordinates, emojis, eventTitles, eventDescriptions, eventDates, hostUsernames } = require("./MapSampleData.ts")
       console.log(eventDates.length)
@@ -150,13 +150,13 @@ const Map = () => {
       return (
             <div className="map">
 
-                  <div ref={mapContainer} className="grid-item map-container"></div>
+                  <div ref={mapContainer} className="map-container"></div>
 
 
-{/* 
-                  <div className="grid-item-2">
-                        BLOCK!!
-                  </div> */}
+
+                  <div className="navbar">
+                        <Navbar />
+                  </div>
 
             </div>
       );

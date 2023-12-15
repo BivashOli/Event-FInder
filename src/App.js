@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import MapView from "./pages/MapView";
 import Navbar from "./components/Navbar/Navbar";
+import EventView from "./pages/EventView";
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
         
         <Route path="/map" element={<MapView/>} />
         <Route path="/navbar" element={<Navbar/>} />
+        <Route path="/eventview" element={<EventView/>} />
 
 
       </Routes>

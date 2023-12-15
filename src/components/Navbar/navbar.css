@@ -1,78 +1,15 @@
-/* ul {
-     list-style-type: none;
-     padding: 0;
-     overflow: hidden;
+
+.Navbar{
      position: fixed;
      bottom: 0;
-     width: 70%;
-     display: inline-block;
-     margin-left: 25%;
-     margin-top: 0;
-     margin-bottom: 0;
+     background-color: rgb(238, 255, 241);
+     width: 100%;
+     height: 5%;
 }
 
-li {
-     float: left;
-     background-color: rgb(232, 218, 218);
-     height: 70%;
-     padding: 5px 5px;
-}
-
-li a {
-     display: block;
-     color: white;
-     text-align: center;
-     padding: 14px 16px;
-     text-decoration: none;
-     font-size: 80px
-}
-
-/* Change the link color to #111 (black) on hover */
-/* li a:hover {
-     background-color: #111;
-}
-
-li {
-     border-right: 1px solid #bbb;
-}
-
-li:last-child {
-     border-right: none;
-}
- */
-
-.grid-container {
-     display: grid;
-     grid-template-columns: 200px 200px;
-     grid-auto-rows: minmax(150px, auto);
-     justify-content: center;
+.flex-container{
+     display: flex;
+     justify-content: space-around;
      align-items: center;
-     grid-template-areas: "header header"
-          "sidebar content"
-          "sidebar content"
-     ;
 }
 
-.grid-item {
-     background-color: blue;
-     margin: 10px;
-     border: 3px thick coral;
-}
-
-.grid-item1 {
-     grid-area: header;
-     grid-column-start: 1;
-     grid-column-end: 3;
-}
-
-.grid-item2 {
-     grid-area: sidebar;
-}
-
-.grid-item3 {
-     grid-area: content;
-}
-
-.grid-item4 {
-     grid-area: content;
-}

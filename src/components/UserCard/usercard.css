@@ -1,0 +1,12 @@
+.UserCard{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+}
+
+.user-profile-pic{
+     margin: 5px;
+}
+.flex-item{
+     margin: 5px;
+}
