@@ -15,5 +15,6 @@
                "before" : ["k", "j"],
                "after" : ["<Esc>"]
           }
-     ]
+     ],
+     "git.ignoreLimitWarning": true
 }

@@ -4,7 +4,7 @@
      bottom: 0;
      background-color: rgb(238, 255, 241);
      width: 100%;
-     height: 5%;
+     height: 8%;
 }
 
 .flex-container{
@@ -13,3 +13,10 @@
      align-items: center;
 }
 
+.item{
+     font-size: 50px;
+}
+
+a{
+     text-decoration: none;
+}
