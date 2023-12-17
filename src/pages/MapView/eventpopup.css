@@ -1,0 +1,13 @@
+
+
+.eventHostPfp{
+     float: right;
+     background-size: cover;
+     width: 30px;
+     height: 30px;
+}
+
+.eventHostUsername{
+     text-align: right;
+     float: right;
+}
