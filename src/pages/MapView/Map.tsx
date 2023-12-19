@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Link, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 import mapboxgl from 'mapbox-gl'
 import EventIcon from './EventIcon';
 import EventPopup from './EventPopup'
@@ -30,8 +30,6 @@ const Map = () => {
                   return;
             }
 
-
-
             map.current = new mapboxgl.Map({
                   container: mapContainer.current,
                   style: 'mapbox://styles/mapbox/streets-v12',
@@ -40,18 +38,6 @@ const Map = () => {
             })
 
             map.current.on('zoom', () => {
-
-                  // if (map.current.getZoom() < 11) {
-                  // const scale = 1 + 5 * Math.log(map.current.getZoom())
-                  // const scale = 1 + ()
-                  // markers.forEach((marker, i, arr) => {
-                  //       const markerIcon = marker.getElement()
-                  //       markerIcon.style.transform = `scale(0.3)`
-                  //       // markerIcon.style.transform = `scale(${scale}, ${scale})`
-                  //       markerIcon.style.transformOrigin = 'bottom'
-                  //       markerIcon.style.scale = `${scale}` 
-                  // })
-                  // }
             })
 
             navigator.geolocation.getCurrentPosition(
@@ -64,32 +50,14 @@ const Map = () => {
                         console.log("error")
                   }
             )
-
-
-
-
-
             const markerImg = require('../../res/test_images/party-emoji.webp')
 
             for (let i = 0; i < 32; i++) {
                   console.log(i)
                   const markerElement = document.createElement('div')
                   markerElement.className = "custom-marker"
-                  // markerElement.style.backgroundImage = `url(${markerImg})`
                   markerElement.innerHTML = emojis[i]
                   markerElement.style.fontSize = '50px'
-
-                  // const popupElement = document.createElement('div')
-                  // const eventTitleElement = document.createElement('h1')
-                  // eventTitleElement.innerText = eventTitles[i]
-                  // popupElement.appendChild(eventTitleElement)
-
-                  // const eventDescriptionElement = document.createElement('p')
-                  // eventDescriptionElement.innerText = eventDescriptions[i]
-                  // popupElement.appendChild(eventDescriptionElement)
-
-
-                  // const dateElement = document.createElement('p')
                   const formattedTime = new Intl.DateTimeFormat('en-US', {
                         month: 'long',
                         day: 'numeric',
@@ -98,31 +66,11 @@ const Map = () => {
                         hour12: true
                   }).format(eventDates[i][0])
 
-                  // dateElement.innerHTML = formattedTime
-                  // popupElement.appendChild(dateElement)
-
-                  // const eventHostPfp = document.createElement('div')
-                  // eventHostPfp.style.backgroundImage = `url(${markerImg})`
-                  // eventHostPfp.style.float = "right"
-                  // eventHostPfp.style.backgroundSize = 'cover'
-                  // eventHostPfp.style.width = '30px'
-                  // eventHostPfp.style.height = '30px'
-                  // // eventHostPfp.style.marginTop = '8px'
-                  // popupElement.appendChild(eventHostPfp)
-
-                  // const eventHostUsername = document.createElement('a')
-                  // eventHostUsername.href = "/x"
-                  // eventHostUsername.innerText = "@" + hostUsernames[i]
-                  // eventHostUsername.style.textAlign = "right"
-                  // eventHostUsername.style.float = "right"
-                  // popupElement.appendChild(eventHostUsername)
-
-
-                  // const popupElement = document.createElement('div')
-                  // ReactDOM.render(EventPopup, popupElement) 
-
                   const popupElement = document.createElement('div')
-                  ReactDOM.render(<EventPopup eventTitle={eventTitles[0]} eventDescription={eventDescriptions[i]} eventDate={formattedTime} eventHostPfp={markerImg} eventHostUsername={hostUsernames[i]} eventViewLink={"x"}/>, popupElement)
+
+                  popupElement.innerHTML = ReactDOMServer.renderToString(<BrowserRouter><EventPopup eventTitle={eventTitles[0]} eventDescription={eventDescriptions[i]} eventDate={formattedTime} eventHostPfp={markerImg} eventHostUsername={hostUsernames[i]} eventViewLink={"x"} /> </BrowserRouter>)
+
+                  // ReactDOM.render(<BrowserRouter><EventPopup eventTitle={eventTitles[0]} eventDescription={eventDescriptions[i]} eventDate={formattedTime} eventHostPfp={markerImg} eventHostUsername={hostUsernames[i]} eventViewLink={"x"} /></BrowserRouter>, popupElement)
                   const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(popupElement)
 
                   const marker: mapboxgl.Marker = new mapboxgl.Marker(markerElement)

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import MapView from "./pages/MapView";
 import Navbar from "./components/Navbar/Navbar";
 import EventView from "./pages/EventView";
+import EventPopup from "./pages/MapView/EventPopup";
 
 function App() {
 

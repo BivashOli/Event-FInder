@@ -10,7 +10,9 @@ const UserCard = (props) => {
                     <img src={sampleUserPfp} alt="" width="64" height="64"/>
                </div>
                <div className="user-username flex-item">
-                    <a href="">@{props.username}</a>
+                    {/* <a href="">@{props.username}</a> */}
+                    <a href="">@flexy</a>
+
                </div>
           </div>
      )

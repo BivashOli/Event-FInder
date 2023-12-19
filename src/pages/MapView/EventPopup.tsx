@@ -17,15 +17,17 @@ const EventPopup = (props) => {
                          {props.eventDate}
                     </p>
                </div>
-               <div className="eventHostPfp" style={{backgroundImage: `url(${props.eventHostPfp})`}}>
+               <div className="eventHostPfp" style={{ backgroundImage: `url(${props.eventHostPfp})` }}>
                </div>
                <div className="eventHostUsername">
                     <a href="">@{props.eventHostUsername}</a>
                </div>
                <div className="eventViewLink">
-                    {/* <Link to={"/" + props.eventLink}>See more</Link> */}
+                    <Link to="/eventview" state={{ userUsername: props.eventHostUsername }} >
+ 
+                         See more</Link>
                </div>
-          </div>
+          </div >
      )
 }
 

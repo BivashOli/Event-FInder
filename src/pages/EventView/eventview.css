@@ -1,0 +1,54 @@
+.EventView {
+     display: grid;
+     grid-template-columns: auto auto;
+     grid-template-areas: "header empty-area" "content content" "pics empty-area"
+     ;
+}
+
+.top-section-container {
+     display: flex;
+     grid-area: "header";
+     justify-content: center;
+     align-items: center;
+}
+
+.follow-button {
+     background-color: rgb(110, 110, 175);
+     padding: 10px;
+     text-decoration: none;
+     color: white;
+     text-align: center;
+     border-radius: 20px;
+     width: fit-content;
+}
+
+.attend-button{
+     background-color: rgb(4, 154, 4);
+     padding: 10px;
+     text-decoration: none;
+     color: white;
+     text-align: center;
+     border-radius: 20px;
+     width: fit-content;
+}
+
+.top-section-item {
+     margin: 10px
+}
+
+.user-info {
+     /* margin-top: 25px; */
+     display: flex;
+     flex-direction: column;
+}
+
+.content {
+     display: flex;
+     justify-content: center;
+     grid-area: "content";
+     align-items: center;
+}
+
+.empty-area {
+     grid-area: "empty space";
+}
