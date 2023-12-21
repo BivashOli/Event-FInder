@@ -1,0 +1,27 @@
+.UserView{
+     text-align: center;
+}
+
+.other-information{
+     display: flex;
+     justify-content: center;
+
+}
+
+.flex-item{
+     margin-inline: 35px;
+}
+
+.flex-itemv2{
+     margin-inline: 20px;
+}
+
+.other-information-headings{
+     display: flex;
+     justify-content: center;
+}
+
+.event-info{
+     float: left;
+     margin-inline-start: 10px;
+}

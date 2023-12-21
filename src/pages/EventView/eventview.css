@@ -12,26 +12,6 @@
      align-items: center;
 }
 
-.follow-button {
-     background-color: rgb(110, 110, 175);
-     padding: 10px;
-     text-decoration: none;
-     color: white;
-     text-align: center;
-     border-radius: 20px;
-     width: fit-content;
-}
-
-.unfollow-button {
-     background-color: rgb(255, 247, 247);
-     padding: 10px;
-     text-decoration: none;
-     color: rgb(0, 0, 0);
-     text-align: center;
-     border-radius: 20px;
-     width: fit-content;
-}
-
 .attend-button{
      background-color: rgb(4, 154, 4);
      padding: 10px;

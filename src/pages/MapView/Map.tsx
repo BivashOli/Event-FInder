@@ -68,7 +68,7 @@ const Map = () => {
 
                   const popupElement = document.createElement('div')
 
-                  popupElement.innerHTML = ReactDOMServer.renderToString(<BrowserRouter><EventPopup eventTitle={eventTitles[0]} eventDescription={eventDescriptions[i]} eventDate={formattedTime} eventHostPfp={markerImg} eventHostUsername={hostUsernames[i]} eventViewLink={"x"} /> </BrowserRouter>)
+                  popupElement.innerHTML = ReactDOMServer.renderToString(<BrowserRouter><EventPopup eventTitle={eventTitles[i]} eventDescription={eventDescriptions[i]} eventDate={formattedTime} eventHostPfp={markerImg} eventHostUsername={hostUsernames[i]} eventViewLink={"x"} /> </BrowserRouter>)
 
                   // ReactDOM.render(<BrowserRouter><EventPopup eventTitle={eventTitles[0]} eventDescription={eventDescriptions[i]} eventDate={formattedTime} eventHostPfp={markerImg} eventHostUsername={hostUsernames[i]} eventViewLink={"x"} /></BrowserRouter>, popupElement)
                   const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(popupElement)

@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import UserCard from '../../components/UserCard';
 import Navbar from '../../components/Navbar';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import "./eventview.css"
+import FollowButton from '../../components/FollowButton';
 
 const EventView = (props) => {
      console.log(props
      )
 
-     const location = useLocation()
-     const userUsername = location.state ? location.state.userUsername : null;
+          console.log(useParams())
+
+     const params = useParams()
+     const {state} = useLocation()
+     console.log(state)
+     // const userUsername = state.state ? state.state.userUsername : null;
      const [isFollowing, setFollowing] = useState(false) // initial value should be retrieved from database not just false
      const [isAttending, setAttending] = useState(false) // initial value should be retrieved from database not just false
 
@@ -18,15 +23,13 @@ const EventView = (props) => {
           <div className="EventView">
                <div className="top-section-container">
                     <div className="top-section-item user-info">
-                         <UserCard userProfilePic="" username={userUsername} />
-                         {(isFollowing) ? (<button onClick={() => setFollowing(false)} className="unfollow-button">Unfollow</button>
-                         ) : (<button onClick={() => setFollowing(true)} className="follow-button">Follow</button>
-                         )}
+                         <UserCard userProfilePic="" username={params.eventHostUsername} />
+                         <FollowButton/>
 
                     </div>
                     <div className="top-section-item event-info">
-                         <h1>🧘🏾Morning stretches meetup!</h1>
-                         <h4>Dec 17th 9 am</h4>
+                         <h1>{params.eventTitle}</h1>
+                         <h4>{params.eventStartDate}</h4>
                          <p>xyz people are attending</p>
 
 
@@ -37,7 +40,7 @@ const EventView = (props) => {
                          }
 
                          {/* <Link to="" className="attend-button">Attend</Link> */}
-                         <p>Description</p>
+                         <p>{params.eventDescription}</p>
                     </div>
                </div>
                <div className="empty-area">asdsd</div>
