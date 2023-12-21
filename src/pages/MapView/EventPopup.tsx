@@ -23,9 +23,11 @@ const EventPopup = (props) => {
                     <Link to={`/userview/${encodeURIComponent(props.eventHostUsername)}`}>@{props.eventHostUsername}</Link>
                </div>
                <div className="eventViewLink">
-                    <Link to= {`/eventview/${encodeURIComponent(props.eventTitle)}/${encodeURIComponent(props.eventDescription)}/${encodeURIComponent(props.eventDate)}/${encodeURIComponent(props.eventDate)}/${encodeURIComponent(props.eventHostUsername)}/${"blank"}`} >
-
+                    <Link to={`/eventview/${encodeURIComponent(props.eventTitle)}/${encodeURIComponent(props.eventDescription)}/${encodeURIComponent(props.eventDate)}/${encodeURIComponent(props.eventDate)}/${encodeURIComponent(props.eventHostUsername)}/${"blank"}`} >
                          See more</Link>
+               </div>
+               <div className="eventAttendingNumber">
+                    xyz are attending {props.eventTitle}
                </div>
           </div >
      )

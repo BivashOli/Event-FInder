@@ -12,26 +12,6 @@
      align-items: center;
 }
 
-.attend-button{
-     background-color: rgb(4, 154, 4);
-     padding: 10px;
-     text-decoration: none;
-     color: white;
-     text-align: center;
-     border-radius: 20px;
-     width: fit-content;
-}
-
-.unattend-button{
-     background-color: rgb(4, 154, 4);
-     padding: 10px;
-     text-decoration: none;
-     color: white;
-     text-align: center;
-     border-radius: 20px;
-     width: fit-content;
-}
-
 .top-section-item {
      margin: 10px
 }
