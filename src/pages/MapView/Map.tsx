@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 
 const Map = () => {
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic2hvY2ttaW5lcngiLCJhIjoiY2tzdXZvdzNoMTMwNzJvcXoza3hqcjdieiJ9.RSOERNWq8FkRBi9Z4Q4hbg'
+      mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN
       const map = useRef(null)
       const mapContainer = useRef(null)
 
