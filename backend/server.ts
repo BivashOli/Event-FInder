@@ -1,10 +1,17 @@
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
+
+const userRoutes = require('./routes/UserRoutes')
 
 require('dotenv').config({path : '.env.local'})
 
 const app = express()
+
+app.use(cors)
+app.use(express.urlencoded({extended : true}))
+app.use(userRoutes)
 
 const dbURI = process.env.DB_URI
 console.log(dbURI)

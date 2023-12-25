@@ -9,7 +9,10 @@ import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 
 const Map = () => {
+      console.log(process.env.REACT_APP_MAPBOX_TOKEN)  
+      console.log(process.env.GOOGLE_CLIENT_ID)  
       mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN
+
       const map = useRef(null)
       const mapContainer = useRef(null)
 
