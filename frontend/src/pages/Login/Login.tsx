@@ -8,6 +8,8 @@ const Login = () => {
 
      const HandleLoginSuccess = (credentialResponse : CredentialResponse) => {
           console.log("stuff is happening!")
+
+          console.log(JSON.stringify(credentialResponse))
           fetch('http://127.0.0.1:3001/login', {
                method: 'POST',
                headers: { 'Content-Type': "application/json" },

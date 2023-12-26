@@ -1,15 +1,23 @@
-import {Request, Response} from 'express'
+import express, {Request, Response} from 'express'
 import { Express } from 'express'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 
-const express = require('express')
-const router = express.Router()
+const router: express.Router = express.Router()
 
 router.post('/login', (req : Request, res : Response) => {
-     console.log(req.body.credentialResponse)
-     res.json({success : "oh blimey!!!"})
+     const {credential} = req.body
+     const decodedToken : string | jwt.JwtPayload | null = jwt.decode(credential)
+
+     if (typeof decodedToken != 'string' && decodedToken != null){
+
+          const userEmail = decodedToken?.email;
+     }
+     // Check if this userEmail exists already
+     // If it doesnt exist, create them as a new user in DB
+     // Regardless of the if statement, redirect them to map page
 })
 
-router.get('/usertest', (req : Request, res : Response) => {
-     res.render("efqe")
-})
-module.exports = router
+// router.delete() 
+
+
+export default router
