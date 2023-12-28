@@ -4,28 +4,27 @@ import jwt_decode from "jwt-decode"
 
 const Login = () => {
 
-     const [token , setToken] = useState<CredentialResponse>()
 
-     const HandleLoginSuccess = (credentialResponse : CredentialResponse) => {
-          console.log("stuff is happening!")
+     const HandleLoginSuccess = (credentialResponse: CredentialResponse) => {
 
-          console.log(JSON.stringify(credentialResponse))
+
+          console.log(credentialResponse.credential)
+
+
+
           fetch('http://127.0.0.1:3001/login', {
                method: 'POST',
-               headers: { 'Content-Type': "application/json" },
+               headers: { 'Authorization': `Bearer ${credentialResponse.credential}`, 'Content-Type': "application/json" },
                body: JSON.stringify(credentialResponse)
           }).then((res: Response) => res.json()).then((data) => {
-               console.log("success")
-               console.log(data)
           }).catch(error => console.log("log:" + error))
      }
-    
+
 
      return (
           <GoogleLogin
                onSuccess={HandleLoginSuccess}
                onError={() => {
-                    console.log("Login failed")
                }}
           />
      );

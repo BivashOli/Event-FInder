@@ -29,25 +29,28 @@ const eventSchema : mongoose.Schema = new mongoose.Schema({
           country: String
      },
      coordinates : {
-          type: String,
-          enum: ['Point'],
-          required: true,
-          coordinates: {
+          type: {
+               type: String, // Don't do `{ location: { type: String } }`
+               enum: ['Point'], // 'location.type' must be 'Point'
+               required: true
+             },
+             coordinates: {
                type: [Number],
-               index: '2dsphere'
-          }
+               required: true
+             }
+
      },
      closed: {
           type: Boolean,
-          required: true
+          required: false
      },
      host : {
           type: mongoose.Schema.Types.ObjectId,
-          required: true
+          required: false
      },
      media : {
           type: [mongoose.Schema.Types.ObjectId],
-          required: true
+          required: false
      },
      
 }, {timestamps: true})
