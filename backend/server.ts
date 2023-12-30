@@ -5,6 +5,7 @@ import userRoutes from './routes/UserRoutes'
 import eventRoutes from './routes/EventRoutes'
 import dotenv from 'dotenv'
 import authentication from './middleware/Authentication'
+import authorization from './middleware/Authorization'
 
 //config dotenv file
 dotenv.config({ path: '.env.local' })
@@ -17,6 +18,7 @@ app.use(express.json())
 
 // middleware
 app.use(authentication)
+// app.use(authorization)
 // set routes
 app.use(userRoutes)
 app.use(eventRoutes)
@@ -39,7 +41,7 @@ app.listen(3001, () => {
 })
 
 // home page
-app.get("/", (req: Request, res: Response) => {
+app.get("/:userId", authorization, (req: Request, res: Response) => {
      res.send("<h1>HOME</h1>")
 })
 

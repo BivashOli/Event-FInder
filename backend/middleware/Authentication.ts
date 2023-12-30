@@ -1,10 +1,11 @@
 import Express, { Request, Response, NextFunction } from 'express'
 import { LoginTicket, OAuth2Client } from 'google-auth-library'
 import User from '../models/User'
+import mongoose from 'mongoose'
 
 const Authentication = (req: Request, res: Response, next: NextFunction): void => {
 
-     console.log(req.headers.authorization)
+     // console.log(req.headers.authorization)
      const credential = (req.headers.authorization as string).split(" ")[1]
      // req.headers.authorization
      const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
@@ -31,22 +32,29 @@ const Authentication = (req: Request, res: Response, next: NextFunction): void =
                               dob: new Date(),
                               public: true
                          }).save().then((result) => {
-                              console.log(result)
+                              user = result
+
                          }).catch(err => res.json({ success: -1 }))
                     } else {
                          console.log("USER ALREADY EXISTS")
                     }
 
+                    if (user) {
+                         (req as any).authorizationId = user._id
+                         console.log("LOG1: " + (user._id as mongoose.Types.ObjectId).toString())
+                         console.log("LOG1: " + (req as any).authorizationId.toString())
+                         next()
+                    }
+
                })
-               next()
           }).catch(() => {
-               res.json({failed : 1})
-               
+               res.json({ failed: 1 })
+
           })
 
-               
 
-          
+
+
 }
 
 export default Authentication
