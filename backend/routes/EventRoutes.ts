@@ -1,6 +1,5 @@
 import express, { Request, Response, Router } from "express"
 import Event from '../models/Event'
-import Authorization from "../middleware/Authorization"
 
 
 interface Address{
@@ -32,10 +31,8 @@ router.post("/event", (req: Request, res: Response) => {
           }).catch(err => {console.log(err); res.json({success : 0})})
 })
 
-router.get("/event/:id", (req: Request, res: Response) => { })
+router.get("/event/:id", () => { })
 
-router.delete("/event/:id/:eventId", Authorization, (req: Request, res: Response) => { })
+router.delete("/event/:id", () => { })
 
-router.patch('/event/:id', Authorization, (req : Request, res : Response) => {
-})
 export default router
