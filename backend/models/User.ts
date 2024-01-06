@@ -5,10 +5,6 @@ const userSchema: mongoose.Schema = new mongoose.Schema({
           type: String,
           required: true
      },
-     sub: {
-          type: String,
-          required: false
-     },
      email: {
           type: String,
           required: true
@@ -30,7 +26,7 @@ const userSchema: mongoose.Schema = new mongoose.Schema({
           enum: ['male', 'female', 'other'],
           required: false 
      },
-     public: {
+     isPublic: {
           type: Boolean,
           required: true
      },

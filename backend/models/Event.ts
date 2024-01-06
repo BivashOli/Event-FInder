@@ -1,6 +1,32 @@
 import mongoose from 'mongoose'
 
-const eventSchema : mongoose.Schema = new mongoose.Schema({
+
+interface Event {
+     title: string,
+     description: string,
+     emoji: string,
+     dateStart: Date,
+     dateEnd: Date,
+     isPublic: boolean,
+     address: {
+          street: string,
+          city: string,
+          state: string,
+          postalCode: string,
+          country: string,
+     }
+     ,
+     coordinates: { type: string, coordinates: [number] },
+     isClosed: boolean,
+     host: mongoose.Types.ObjectId,
+     media : mongoose.Schema.Types.ObjectId
+
+}
+
+interface EventDocument extends Event, mongoose.Document { }
+
+
+const eventSchema: mongoose.Schema = new mongoose.Schema<Event>({
      title: {
           type: String,
           required: true
@@ -13,12 +39,12 @@ const eventSchema : mongoose.Schema = new mongoose.Schema({
           type: String,
           required: false
      },
-     dateStart : {
+     dateStart: {
           type: Date,
           required: true
      },
-     dateEnd : {
-          type: Date, 
+     dateEnd: {
+          type: Date,
           required: true
      },
      address: {
@@ -28,33 +54,33 @@ const eventSchema : mongoose.Schema = new mongoose.Schema({
           postalCode: String,
           country: String
      },
-     coordinates : {
+     coordinates: {
           type: {
-               type: String, // Don't do `{ location: { type: String } }`
-               enum: ['Point'], // 'location.type' must be 'Point'
+               type: String,
+               enum: ['Point'], 
                required: true
-             },
-             coordinates: {
+          },
+          coordinates: {
                type: [Number],
                required: true
-             }
+          }
 
      },
-     closed: {
+     isClosed: {
           type: Boolean,
           required: false
      },
-     host : {
+     host: {
           type: mongoose.Schema.Types.ObjectId,
           required: false
      },
-     media : {
+     media: {
           type: [mongoose.Schema.Types.ObjectId],
           required: false
      },
-     
-}, {timestamps: true})
 
-const Event = mongoose.model('Event', eventSchema)
+}, { timestamps: true })
 
-export default Event
+const EventModel = mongoose.model<EventDocument> ('Event', eventSchema)
+
+export { EventModel, EventDocument, Event, eventSchema }

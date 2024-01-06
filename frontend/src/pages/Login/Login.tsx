@@ -12,7 +12,7 @@ const Login = () => {
 
 
 
-          fetch('http://127.0.0.1:3001/login', {
+          fetch('http://127.0.0.1:3001/', {
                method: 'POST',
                headers: { 'Authorization': `Bearer ${credentialResponse.credential}`, 'Content-Type': "application/json" },
                body: JSON.stringify(credentialResponse)

@@ -1,18 +1,20 @@
 {
-    "title": "Karoake night!",
-    "description": "crazzzzy night ahead!",
-    "emoji": "🤗",
-    "dateStart": "2012-04-23T18:25:43.511Z",
-    "dateEnd": "2012-04-23T18:25:43.511Z",
+    "title": "Community Picnic1 shockminerx",
+    "description": "A gathering for fun and food.",
+    "emoji": "🍔",
+    "dateStart": "2024-08-05T11:00:00Z",
+    "dateEnd": "2024-08-05T15:00:00Z",
+    "isPublic": true,
     "address": {
-        "street": "7552 Todd St",
-        "city": "Kornakopia",
-        "state": "New York",
-        "postalCode": "11222",
-        "country": "United States of America",
-        "coordinates": [
-            37,
-            -80
-        ]
+      "street": "123 Park Avenue",
+      "city": "Sunnytown",
+      "state": "Joyful State",
+      "postalCode": "12345",
+      "country": "Happyland"
+    },
+    "coordinates": {
+      "type": "Point",
+      "coordinates": [40.7128, -74.0060] 
     }
-}
+  }
+  

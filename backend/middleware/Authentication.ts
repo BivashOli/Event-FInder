@@ -3,11 +3,12 @@ import { LoginTicket, OAuth2Client } from 'google-auth-library'
 import User from '../models/User'
 import mongoose from 'mongoose'
 
+
+import { UserData, doesUserExistByEmail, createUser } from '../controller/UserController'
+
 const Authentication = (req: Request, res: Response, next: NextFunction): void => {
 
-     // console.log(req.headers.authorization)
      const credential = (req.headers.authorization as string).split(" ")[1]
-     // req.headers.authorization
      const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
      let email: string | undefined
@@ -20,41 +21,24 @@ const Authentication = (req: Request, res: Response, next: NextFunction): void =
                     sub = payload.sub
                     console.log(email)
                } else {
-                    console.log("ERROR: No payload found")
+                    res.json({error : "Error: Payload doesn't exist"})
                }
 
-               User.findOne({ email: email }).then((user) => {
+               doesUserExistByEmail(email).then((user) => {
                     if (!user) {
-                         const newUser = new User({
-                              username: "testinggg",
-                              sub: sub,
-                              email: email,
-                              dob: new Date(),
-                              public: true
-                         }).save().then((result) => {
-                              user = result
-
-                         }).catch(err => res.json({ success: -1 }))
-                    } else {
-                         console.log("USER ALREADY EXISTS")
+                         const userData : UserData = {username : "bobjoe", email : email as string, firstName : "bob", lastName : "joel", dob : new Date(), isPublic : true}
+                         createUser(userData).then((newUser) => {
+                              user = newUser
+                         })
                     }
-
-                    if (user) {
+                    if (user)
                          (req as any).authorizationId = user._id
-                         console.log("LOG1: " + (user._id as mongoose.Types.ObjectId).toString())
-                         console.log("LOG1: " + (req as any).authorizationId.toString())
-                         next()
-                    }
-
+                    next()
                })
-          }).catch(() => {
+          }).catch((err) => {
                res.json({ failed: 1 })
-
+               console.log(err)
           })
-
-
-
-
 }
 
 export default Authentication
