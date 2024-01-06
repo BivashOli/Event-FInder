@@ -1,4 +1,4 @@
-import { adder, getUserById } from "../controller/UserController";
+import { getUserById } from "../controller/UserController";
 
 describe("#getUserById", () => {
      it("returns a user from a id", () => {

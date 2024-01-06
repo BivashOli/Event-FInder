@@ -10,11 +10,6 @@ interface UserData{
      isPublic: boolean
 }
 
-const adder = (x : number, y : number) => {
-
-     return x + y
-}
-
 const getUserById = async (id: string) => {
      return (await User.findById(new mongoose.Types.ObjectId(id)
      ))?.toJSON()
@@ -36,4 +31,4 @@ const updateUser = async (id : string, userData : Partial<UserData>) => {
      await User.findOneAndUpdate({_id : id}, userData)
 }
 
-export { adder, UserData, getUserById, doesUserExistByEmail, createUser, deleteUser, updateUser }
+export { UserData, getUserById, doesUserExistByEmail, createUser, deleteUser, updateUser }
