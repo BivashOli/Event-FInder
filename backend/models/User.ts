@@ -1,5 +1,14 @@
 import mongoose from 'mongoose'
 
+interface User{
+     username : string,
+     email : string,
+     firstName : string,
+     lastName : string, 
+     dob : Date,
+     isPublic: boolean
+}
+
 const userSchema: mongoose.Schema = new mongoose.Schema({
      username: {
           type: String,
@@ -39,6 +48,6 @@ const userSchema: mongoose.Schema = new mongoose.Schema({
 
 
 
-const User = mongoose.model('User', userSchema) 
+const UserModel = mongoose.model('User', userSchema) 
 
-export default User
+export {User, UserModel}

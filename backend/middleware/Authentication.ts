@@ -1,10 +1,8 @@
 import Express, { Request, Response, NextFunction } from 'express'
 import { LoginTicket, OAuth2Client } from 'google-auth-library'
-import User from '../models/User'
+import {User, UserModel} from '../models/User'
 import mongoose from 'mongoose'
-
-
-import { UserData, doesUserExistByEmail, createUser } from '../controller/UserController'
+import {doesUserExistByEmail, createUser } from '../controller/UserController'
 
 const Authentication = (req: Request, res: Response, next: NextFunction): void => {
 
@@ -26,7 +24,7 @@ const Authentication = (req: Request, res: Response, next: NextFunction): void =
 
                doesUserExistByEmail(email).then((user) => {
                     if (!user) {
-                         const userData : UserData = {username : "bobjoe", email : email as string, firstName : "bob", lastName : "joel", dob : new Date(), isPublic : true}
+                         const userData : User = {username : "bobjoe", email : email as string, firstName : "bob", lastName : "joel", dob : new Date(), isPublic : true}
                          createUser(userData).then((newUser) => {
                               user = newUser
                          })
